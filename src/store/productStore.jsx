@@ -71,6 +71,12 @@ import { create } from "zustand";
                 )
             }))
 
+        },
+
+        clearProducts : () => {
+            set(() => ({
+                products : []
+            }))
         }
 
 }))

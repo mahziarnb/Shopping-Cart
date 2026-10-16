@@ -1,5 +1,8 @@
+import productsStore from "../store/productStore"
 
 export default function Input() {
+
+    const clearProducts = productsStore(state => state.clearProducts)
 
 
     return(
@@ -17,6 +20,7 @@ export default function Input() {
                 <input type="text" disabled value={4} className="quantity bg-red-300 p-2" />
 
                 <button className="border-2 p-3 cursor-pointer w-[20%]">add product</button>
+                <button onClick={() => clearProducts()} className="border-2 bg-red-500 p-3 cursor-pointer w-[20%]">remove all</button>
 
             </form>
 
