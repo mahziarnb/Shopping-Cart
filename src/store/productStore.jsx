@@ -1,7 +1,6 @@
 import { create } from "zustand";
 
- const productsStore = create((set,get) => ({
-
+ const productsStore = create((set) => ({
 
         products :[
 
@@ -18,8 +17,9 @@ import { create } from "zustand";
             set((state) => ({
 
                 products : state.products.map(
-
-                product => product.id === btnId ? {...product , quantity: product.quantity + 1} : product
+                product => product.id === btnId ?
+                {...product , quantity: product.quantity + 1} :
+                product
 
             )
         }))
@@ -35,7 +35,20 @@ import { create } from "zustand";
                     product
                 )
             }))
-        }
+        },
+
+        removeProduct: (btnId) => {
+            set(
+                state => ({
+                    products : state.products.filter(
+                        product =>
+                            product.id !== btnId
+                    )
+                })
+            )
+        },
+
+
 }))
 export default productsStore
 
