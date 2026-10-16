@@ -2,7 +2,7 @@ import productsStore from "../store/productStore"
 export default function ListItem({title , price , quantity , id}) {
 
     const increase = productsStore(state => state.increase)
-    console.log(increase)
+    const decrease = productsStore(state => state.decrease)
     return(
         <>
 
@@ -14,9 +14,8 @@ export default function ListItem({title , price , quantity , id}) {
 
                 <span>quantity: {quantity}</span>
                 <div className="flex gap-3">
-                    <button onClick={increase} id={id} className="p-1 bg-amber-300 rounded-2xl">+</button>
-                    <button id={id} className="p-1 bg-amber-300 rounded-2xl">-</button>
-                    {/* onClick={decrease} */}
+                    <button onClick={() => increase(id)} className="p-1 bg-amber-300 rounded-2xl">+</button>
+                    <button onClick={() => decrease(id)} className="p-1 bg-amber-300 rounded-2xl">-</button>
                 </div>
 
              </div>

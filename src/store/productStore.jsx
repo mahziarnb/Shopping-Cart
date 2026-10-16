@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
- const productsStore = create((set) => ({
+ const productsStore = create((set,get) => ({
 
 
         products :[
@@ -13,19 +13,36 @@ import { create } from "zustand";
 
                 ],
 
-        increase: function(btnId){
+        increase: (btnId) => {
 
-            const selectItem = products.filter(
-                product =>
-                   Number(product.id) === Number(btnId)
+            set((state) => ({
+
+                products : state.products.map(
+
+                product => product.id === btnId ? {...product , quantity: product.quantity + 1} : product
+
             )
+        }))
 
-            console.log(selectItem)
+        },
 
-
+        decrease : (btnId) => {
+            set((state) => ({
+                products : state.products.map(
+                    product =>
+                    product.id === btnId && product.quantity > 1 ?
+                    {...product , quantity: product.quantity - 1} :
+                    product
+                )
+            }))
         }
-
-
-
 }))
 export default productsStore
+
+
+            // const selectItem = get().products.filter(
+
+            //     product =>
+            //        product.id === btnId
+
+            // )
