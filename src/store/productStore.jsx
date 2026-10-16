@@ -12,6 +12,12 @@ import { create } from "zustand";
 
                 ],
 
+        addProduct: (title , price , quantity , clearFunction) => {
+            set(state => ({
+                products : [...state.products , { id: state.products.length + 1 , title : title , price : price , quantity : quantity}]
+            }))
+            clearFunction()
+        },
 
         increase: (btnId) => {
 
@@ -86,6 +92,7 @@ import { create } from "zustand";
                 ,0)
 
         }
+
 
 }))
 export default productsStore

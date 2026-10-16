@@ -1,6 +1,7 @@
 import productsStore from "../store/productStore"
 export default function ListItem({title , price , quantity , id}) {
 
+    // get actions from productsStore
     const increase = productsStore(state => state.increase)
     const decrease = productsStore(state => state.decrease)
     const removeProduct = productsStore(state => state.removeProduct)
@@ -8,7 +9,7 @@ export default function ListItem({title , price , quantity , id}) {
 
     return(
         <>
-
+            {/* show product process */}
              <div className="mb-4 bg-white flex justify-around">
 
                <span>title: {title}</span>
