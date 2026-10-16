@@ -12,6 +12,7 @@ import { create } from "zustand";
 
                 ],
 
+
         increase: (btnId) => {
 
             set((state) => ({
@@ -48,14 +49,29 @@ import { create } from "zustand";
             )
         },
 
+        updatePrice : (btnId) => {
+
+            const newPrice = prompt('enter new price :')
+
+            if(newPrice === null) {
+                return
+            }
+
+            if(Number.isNaN(Number(newPrice)) || newPrice.trim() === ''){
+                alert('value is not valid')
+                return
+            }
+
+            set((state) => ({
+                products : state.products.map(
+                    product =>
+                        product.id === btnId ?
+                        {...product , price : Number(newPrice) } :
+                        product
+                )
+            }))
+
+        }
 
 }))
 export default productsStore
-
-
-            // const selectItem = get().products.filter(
-
-            //     product =>
-            //        product.id === btnId
-
-            // )
