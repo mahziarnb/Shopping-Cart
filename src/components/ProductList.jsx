@@ -4,7 +4,7 @@ import ListItem from "./ListItem"
 export default function ProductList() {
 
     const products = productsStore((state) => state.products)
-
+    const getTotal = productsStore(state => state.getTotal)
 
 
     return(
@@ -18,12 +18,11 @@ export default function ProductList() {
             }
 
             {
-
-                products.length === 0 &&
-
-                <h1 className="p-3 bg-amber-100 border-4 test-3xl text-center">The Shopping Cart is empty</h1>
-
+                products.length === 0 ?
+                <h1 className="p-3 bg-amber-100 border-4 test-3xl text-center">The Shopping Cart is empty</h1>:
+                <h1 className="bg-gray-600 text-2xl text-white p-3 w-[45%]">total price : {getTotal()}</h1>
             }
+
 
         </div>
 

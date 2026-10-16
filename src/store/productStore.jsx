@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
- const productsStore = create((set) => ({
+ const productsStore = create((set , get) => ({
 
         products :[
 
@@ -77,6 +77,14 @@ import { create } from "zustand";
             set(() => ({
                 products : []
             }))
+        },
+
+        getTotal : () => {
+            return get().products.reduce(
+                (total , product) =>
+                     total + product.price * product.quantity
+                ,0)
+
         }
 
 }))
