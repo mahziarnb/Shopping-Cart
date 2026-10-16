@@ -9,14 +9,23 @@ export default function ListItem({title , price , quantity , id}) {
 
     return(
         <>
-            {/* show product process */}
+            {/* Item display process */}
              <div className="mb-4 bg-white flex justify-around">
 
-               <span>title: {title}</span>
+            <div className="flex gap-2">
+                <span className="font-bold text-green-700 text-2xl">title:</span>
+                <span className="text-2xl">{title}</span>
+            </div>
 
-                <span>{`price: $${price}`}</span>
+            <div className="flex gap-2">
+                <span className="font-bold text-green-700 text-2xl">price:</span>
+                <span className="text-2xl">{`$${price}`}</span>
+            </div>
 
-                <span>quantity: {quantity}</span>
+            <div className="flex gap-2">
+                <span className="font-bold text-green-700 text-2xl">quantity:</span>
+                <span className="text-2xl">{quantity}</span>
+            </div>
 
                 <div className="flex gap-3">
 

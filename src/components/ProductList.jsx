@@ -10,7 +10,7 @@ export default function ProductList() {
 
     return(
 
-        <div className="size-[500px] bg-red-800 flex flex-col justify-center">
+        <div className="w-[80%] mx-auto p-5 bg-red-800 flex flex-col justify-center">
 
             {/* show products */}
             {

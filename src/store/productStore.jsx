@@ -13,10 +13,26 @@ import { create } from "zustand";
                 ],
 
         addProduct: (title , price , quantity , clearFunction) => {
+            // validations
+            if(
+                title.trim() === '' ||
+                price.trim() === '' ||
+                quantity.trim() === '' ||
+                !Number.isNaN(Number(title)) ||
+                Number.isNaN(Number(price)) ||
+                Number.isNaN(Number(quantity))
+
+                )
+            {
+                alert('Check the form inputs !')
+                return
+            }
+
             set(state => ({
                 products : [...state.products , { id: state.products.length + 1 , title : title , price : price , quantity : quantity}]
             }))
             clearFunction()
+            
         },
 
         increase: (btnId) => {

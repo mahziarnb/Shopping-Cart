@@ -1,5 +1,5 @@
 import ProductList from './components/ProductList'
-import Input from './components/Input'
+import Form from './components/Form'
 function App() {
 
   return (
@@ -7,7 +7,7 @@ function App() {
 
           <ProductList/>
 
-          <Input/>
+          <Form/>
 
     </div>
 
