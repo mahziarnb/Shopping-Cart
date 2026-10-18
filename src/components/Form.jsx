@@ -11,6 +11,7 @@ export default function Form() {
     const [newItemTitle , setNewItemTitle] = useState('')
     const [newItemPrice , setNewItemPrice] = useState('')
     const [newItemQuantity , setNewItemQuantity] = useState('')
+    
 
     // clear form after create a product
     function clearForm() {

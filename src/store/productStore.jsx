@@ -29,10 +29,10 @@ import { create } from "zustand";
             }
 
             set(state => ({
-                products : [...state.products , { id: state.products.length + 1 , title : title , price : price , quantity : quantity}]
+                products : [...state.products , { id: state.products.length + 1 , title : title , price : Number(price), quantity : Number(quantity)}]
             }))
             clearFunction()
-            
+
         },
 
         increase: (btnId) => {
