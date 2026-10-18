@@ -2,15 +2,35 @@ import { create } from "zustand";
 
  const productsStore = create((set , get) => ({
 
-        products :[
+        products :[],
 
-                    { id: 1, title: "Laptop", price: 1000, quantity: 1 },
+        getProducts: async () => {
+            try{
 
-                    { id: 2, title: "Mouse", price: 50, quantity: 2 },
+                const response = await fetch('http://localhost:4000/api/products')
 
-                    { id: 3, title: "Keyboard", price: 100, quantity: 1 }
+                if(!response.ok) {
 
-                ],
+                    throw new Error ('this is an error')
+
+                }
+
+                const result = await response.json()
+
+                set(() => ({
+                    products : result.data
+                }))
+
+            }catch(err) {
+                console.log(err)
+            }
+        },
+
+        setProducts : (value) => {
+            set( () => ({
+                products : value
+            }))
+        },
 
         addProduct: (title , price , quantity , clearFunction) => {
             // validations

@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import productsStore  from "../store/productStore"
 import ListItem from "./ListItem"
 
@@ -5,6 +6,13 @@ export default function ProductList() {
 
     // get state and action from productsStore
     const products = productsStore((state) => state.products)
+    const getProducts = productsStore((state) => state.getProducts)
+
+
+    useEffect(() => {
+        getProducts()
+    },[])
+
     const getTotal = productsStore(state => state.getTotal)
 
 
