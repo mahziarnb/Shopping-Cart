@@ -141,7 +141,7 @@ import { create } from "zustand";
 
         },
 
-        updatePrice : (btnId) => {
+        updatePrice : async (btnId) => {
 
             const newPrice = prompt('enter new price :')
 
@@ -149,9 +149,35 @@ import { create } from "zustand";
                 return
             }
 
-            if(Number.isNaN(Number(newPrice)) || newPrice.trim() === ''){
+            if(Number.isNaN(Number(newPrice)) || newPrice.trim() === '' || Number(newPrice) < 0 ){
                 alert('value is not valid')
                 return
+            }
+
+            try {
+
+                const response = await fetch(`http://localhost:4000/api/products/${btnId}` , {
+                    method : "PATCH" ,
+
+                    headers : {
+                        "Content-Type" : "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        price : Number(newPrice)
+                    })
+
+                })
+
+
+                if(!response.ok) {
+
+                    throw new Error (`add product filed ! ${response.statusText}`)
+
+                }
+
+            } catch (error) {
+                console.log(error)
             }
 
             set((state) => ({
