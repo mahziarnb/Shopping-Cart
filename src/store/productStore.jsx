@@ -32,7 +32,8 @@ import { create } from "zustand";
             }))
         },
 
-        addProduct: (title , price , quantity , clearFunction) => {
+        addProduct : async (title , price , quantity , clearFunction) => {
+
             // validations
             if(
                 title.trim() === '' ||
@@ -48,11 +49,42 @@ import { create } from "zustand";
                 return
             }
 
-            set(state => ({
-                products : [...state.products , { id: state.products.length + 1 , title : title , price : Number(price), quantity : Number(quantity)}]
-            }))
-            clearFunction()
+            // add data to server
+            try{
 
+                const response = await fetch('http://localhost:4000/api/products' , {
+                    method : "POST",
+                    headers: {
+                        "Content-Type" : "application/json"
+                    },
+                    body: JSON.stringify( {
+                        title: title ,
+                        price: Number(price),
+                        quantity : Number(quantity)
+                    } )
+                })
+
+
+                if(!response.ok) {
+                    console.log(response)
+                    throw new Error (`add product filed ! ${response.statusText}`)
+                }
+
+                // update state
+                const data = await response.json()
+                set(state => ({
+                    products : [...state.products , data.product]
+                }))
+
+                // clear the inputs
+                clearFunction()
+                console.log(get().products)
+
+            }catch(err) {
+
+                console.log(err)
+
+            }
         },
 
         increase: (btnId) => {
@@ -80,15 +112,33 @@ import { create } from "zustand";
             }))
         },
 
-        removeProduct: (btnId) => {
-            set(
-                state => ({
-                    products : state.products.filter(
-                        product =>
-                            product.id !== btnId
-                    )
+        removeProduct: async (btnId) => {
+
+            try {
+
+                const response = await fetch(`http://localhost:4000/api/products/${btnId}`, {
+                    method: "DELETE"
                 })
-            )
+
+                if(!response.ok) {
+                    throw new Error ('remove product filed !')
+                }
+
+                set(
+                    state => ({
+                        products : state.products.filter(
+                            product =>
+                                product.id !== btnId
+                        )
+                    })
+                )
+
+            } catch (error) {
+
+                console.log(error)
+
+            }
+
         },
 
         updatePrice : (btnId) => {
@@ -115,13 +165,35 @@ import { create } from "zustand";
 
         },
 
-        clearProducts : () => {
+        clearProducts : async () => {
+
+        if(get().products.length === 0) {
+                return
+        }
+
+        try {
+
+            const response = await fetch('http://localhost:4000/api/products' , {
+                method: "DELETE"
+            })
+
+            if(!response.ok) {
+                throw new Error(`clear products filed ! ${response.statusText}`)
+            }
+
             set(() => ({
                 products : []
             }))
+
+
+        } catch (error) {
+            console.log(error)
+        }
+
         },
 
         getTotal : () => {
+
             return get().products.reduce(
                 (total , product) =>
                      total + product.price * product.quantity

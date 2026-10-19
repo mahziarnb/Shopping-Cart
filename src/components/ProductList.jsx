@@ -10,7 +10,9 @@ export default function ProductList() {
 
 
     useEffect(() => {
+
         getProducts()
+
     },[])
 
     const getTotal = productsStore(state => state.getTotal)

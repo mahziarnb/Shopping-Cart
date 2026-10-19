@@ -1,6 +1,5 @@
 import productsStore from "../store/productStore"
 export default function ListItem({title , price , quantity , id}) {
-
     // get actions from productsStore
     const increase = productsStore(state => state.increase)
     const decrease = productsStore(state => state.decrease)
