@@ -87,29 +87,87 @@ import { create } from "zustand";
             }
         },
 
-        increase: (btnId) => {
+        increase: async (btnId) => {
 
-            set((state) => ({
+            try {
 
-                products : state.products.map(
-                product => product.id === btnId ?
-                {...product , quantity: product.quantity + 1} :
-                product
+                const response = await fetch(`http://localhost:4000/api/products/${btnId}` , {
 
-            )
-        }))
+                    method : "PATCH" ,
+
+                    headers : {
+                        "Content-Type" : "application/json"
+                    },
+
+                    body : JSON.stringify({
+                         delta : 1
+                    })
+
+                })
+
+                if(!response.ok) {
+                    throw new Error (`increase quantity filed ! ${response.statusText}`)
+                }
+
+
+                set((state) => ({
+
+                    products : state.products.map(
+                    product => product.id === btnId ?
+                    {...product , quantity: product.quantity + 1} :
+                    product
+
+                )
+
+                }))
+
+            } catch (error) {
+                console.log(error)
+            }
+
+
 
         },
 
-        decrease : (btnId) => {
-            set((state) => ({
-                products : state.products.map(
-                    product =>
-                    product.id === btnId && product.quantity > 1 ?
-                    {...product , quantity: product.quantity - 1} :
-                    product
-                )
+        decrease : async (btnId) => {
+
+            try {
+
+                const response = await fetch(`http://localhost:4000/api/products/${btnId}` , {
+
+                    method : "PATCH" ,
+
+                    headers : {
+                        "Content-Type" : "application/json"
+                    },
+
+                    body : JSON.stringify({
+                         delta : -1
+                    })
+
+                })
+
+                if(!response.ok) {
+                    throw new Error (`decrease quantity filed ! ${response.statusText}`)
+                }
+
+
+                set((state) => ({
+                    products : state.products.map(
+                        product =>
+                        product.id === btnId && product.quantity > 1 ?
+                        {...product , quantity: product.quantity - 1} :
+                        product
+                    )
+
             }))
+
+            } catch (error) {
+
+                console.log(error)
+
+            }
+
         },
 
         removeProduct: async (btnId) => {
@@ -193,28 +251,28 @@ import { create } from "zustand";
 
         clearProducts : async () => {
 
-        if(get().products.length === 0) {
-                return
-        }
-
-        try {
-
-            const response = await fetch('http://localhost:4000/api/products' , {
-                method: "DELETE"
-            })
-
-            if(!response.ok) {
-                throw new Error(`clear products filed ! ${response.statusText}`)
+            if(get().products.length === 0) {
+                    return
             }
 
-            set(() => ({
-                products : []
-            }))
+            try {
+
+                const response = await fetch('http://localhost:4000/api/products' , {
+                    method: "DELETE"
+                })
+
+                if(!response.ok) {
+                    throw new Error(`clear products filed ! ${response.statusText}`)
+                }
+
+                set(() => ({
+                    products : []
+                }))
 
 
-        } catch (error) {
-            console.log(error)
-        }
+            } catch (error) {
+                console.log(error)
+            }
 
         },
 
