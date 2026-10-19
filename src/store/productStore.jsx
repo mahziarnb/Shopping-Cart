@@ -26,12 +26,6 @@ import { create } from "zustand";
             }
         },
 
-        setProducts : (value) => {
-            set( () => ({
-                products : value
-            }))
-        },
-
         addProduct : async (title , price , quantity , clearFunction) => {
 
             // validations
