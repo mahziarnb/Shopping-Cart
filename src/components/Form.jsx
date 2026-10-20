@@ -4,14 +4,13 @@ import productsStore from "../store/productStore"
 export default function Form() {
 
     // get actions from store
-    const clearProducts = productsStore(state => state.clearProducts)
     const addProduct = productsStore(state => state.addProduct)
 
     // create new state
     const [newItemTitle , setNewItemTitle] = useState('')
     const [newItemPrice , setNewItemPrice] = useState('')
     const [newItemQuantity , setNewItemQuantity] = useState('')
-    
+
 
     // clear form after create a product
     function clearForm() {
@@ -41,7 +40,6 @@ export default function Form() {
                 {/* btns */}
                 <div className="flex justify-center gap-3">
                     <button className="border-2 p-3 cursor-pointer w-[20%] order-1" onClick={() => addProduct(newItemTitle , newItemPrice , newItemQuantity , clearForm)}>add product</button>
-                    <button onClick={() => clearProducts()} className="border-2 bg-red-500 p-3 cursor-pointer w-[20%]">remove all</button>
                 </div>
 
 
