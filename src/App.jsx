@@ -1,18 +1,15 @@
-import ProductList from './components/ProductList'
-import Form from './components/Form'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import CartIcon from './components/CartIcon'
+import Cart from './components/Cart'
+
 function App() {
 
 
   return (
     <div>
 
-          <FontAwesomeIcon icon={faCartShopping} />
+          <CartIcon />
 
-          <ProductList/>
-
-          <Form/>
+          <Cart/>
 
     </div>
 
