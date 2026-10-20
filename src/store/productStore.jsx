@@ -7,7 +7,7 @@ import { create } from "zustand";
         getProducts: async () => {
             try{
 
-                const response = await fetch('http://localhost:4000/api/products')
+                const response = await fetch('https://shopping-cart-backend-pi.vercel.app/api/products')
 
                 if(!response.ok) {
 
@@ -35,7 +35,9 @@ import { create } from "zustand";
                 quantity.trim() === '' ||
                 !Number.isNaN(Number(title)) ||
                 Number.isNaN(Number(price)) ||
-                Number.isNaN(Number(quantity))
+                Number.isNaN(Number(quantity)) ||
+                Number(quantity) < 1 ||
+                Number(price) < 1
 
                 )
             {
@@ -46,7 +48,7 @@ import { create } from "zustand";
             // add data to server
             try{
 
-                const response = await fetch('http://localhost:4000/api/products' , {
+                const response = await fetch('https://shopping-cart-backend-pi.vercel.app/api/products' , {
                     method : "POST",
                     headers: {
                         "Content-Type" : "application/json"
@@ -85,7 +87,7 @@ import { create } from "zustand";
 
             try {
 
-                const response = await fetch(`http://localhost:4000/api/products/${btnId}` , {
+                const response = await fetch(`https://shopping-cart-backend-pi.vercel.app/api/products/${btnId}` , {
 
                     method : "PATCH" ,
 
@@ -127,7 +129,7 @@ import { create } from "zustand";
 
             try {
 
-                const response = await fetch(`http://localhost:4000/api/products/${btnId}` , {
+                const response = await fetch(`https://shopping-cart-backend-pi.vercel.app/api/products/${btnId}` , {
 
                     method : "PATCH" ,
 
@@ -168,7 +170,7 @@ import { create } from "zustand";
 
             try {
 
-                const response = await fetch(`http://localhost:4000/api/products/${btnId}`, {
+                const response = await fetch(`https://shopping-cart-backend-pi.vercel.app/api/products/${btnId}`, {
                     method: "DELETE"
                 })
 
@@ -208,7 +210,7 @@ import { create } from "zustand";
 
             try {
 
-                const response = await fetch(`http://localhost:4000/api/products/${btnId}` , {
+                const response = await fetch(`https://shopping-cart-backend-pi.vercel.app/api/products/${btnId}` , {
                     method : "PATCH" ,
 
                     headers : {
@@ -251,7 +253,7 @@ import { create } from "zustand";
 
             try {
 
-                const response = await fetch('http://localhost:4000/api/products' , {
+                const response = await fetch('https://shopping-cart-backend-pi.vercel.app/api/products' , {
                     method: "DELETE"
                 })
 
