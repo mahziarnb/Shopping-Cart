@@ -2,9 +2,7 @@ import ProductList from "./ProductList";
 import cartStore from "../store/cartStore";
 export default function Cart() {
     const showCartIcon = cartStore(state => state.showCartIcon)
-    const setShowCartIcon = cartStore(state => state.setShowCartIcon)
     const showForm = cartStore(state => state.showForm)
-    const setShowProductList = cartStore(state => state.setShowProductList)
 
 
 

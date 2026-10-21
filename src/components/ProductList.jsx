@@ -62,8 +62,11 @@ export default function ProductList() {
 
 
     function handleClick() {
+
         setShowCartIcon();
+
         setShowProductList();
+
     }
 
 

@@ -37,8 +37,16 @@ export default function Form() {
     return(
 
         <div className={`  ${showCartIcon === false & showProductList === false ? '' : 'hidden'}  bg-amber-400 p-3 `}>
-            <div className="flex justify-center w-full">
+
+            <div className="flex flex-col items-center w-full gap-2 bg-amber-950 p-3">
                     <input type="search" className="bg-red-900 text-white w-80 p-3" />
+                    <div className="bg-white w-80 text-right">
+                        <ul className="flex flex-col gap-3">
+                            <li className="bg-green-400 p-2">1</li>
+                            <li className="bg-green-400 p-2">2</li>
+                            <li className="bg-green-400 p-2">3</li>
+                        </ul>
+                    </div>
             </div>
 
 
