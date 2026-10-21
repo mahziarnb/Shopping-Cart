@@ -4,15 +4,20 @@ import  cartStore  from "../store/cartStore";
 
 export default function CartIcon () {
 
-    const showIcon = cartStore(state => state.showIcon)
-    const setShowIcon = cartStore(state => state.setShowIcon)
+    const showCartIcon = cartStore(state => state.showCartIcon)
+    const setShowCartIcon = cartStore(state => state.setShowCartIcon)
+    const setShowProductList = cartStore(state => state.setShowProductList)
 
+    function handleClick() {
+        setShowCartIcon();
+        setShowProductList();
+    }
 
     return(
 
-        <div className={`h-screen flex justify-center items-center ${showIcon ? '' : 'hidden'} `}>
+        <div className={` h-screen flex justify-center items-center ${showCartIcon ? '' : 'hidden'} `}>
 
-            <FontAwesomeIcon onClick={() => setShowIcon()} icon={faCartShopping} className={`text-[80px] cursor-pointer `} shake />
+            <FontAwesomeIcon onClick={handleClick} icon={faCartShopping} className={`text-[80px] cursor-pointer `} shake />
 
         </div>
     )

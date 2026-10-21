@@ -1,7 +1,14 @@
 import { useState } from "react"
 import productsStore from "../store/productStore"
+import cartStore from "../store/cartStore"
 
 export default function Form() {
+
+    const showCartIcon = cartStore(state => state.showCartIcon)
+    const showProductList = cartStore(state => state.showProductList)
+    const setShowAdminIcon = cartStore(state => state.setShowAdminIcon)
+    const setShowCartIcon = cartStore(state => state.setShowCartIcon)
+    const setShowForm = cartStore(state => state.setShowForm)
 
     // get actions from store
     const addProduct = productsStore(state => state.addProduct)
@@ -14,14 +21,22 @@ export default function Form() {
 
     // clear form after create a product
     function clearForm() {
+
         setNewItemTitle('')
         setNewItemPrice('')
         setNewItemQuantity('')
+
     }
 
+    function handleClick() {
+        setShowCartIcon();
+        setShowAdminIcon();
+        setShowForm()
+    }
 
     return(
-        <div className="bg-amber-400 p-3">
+
+        <div className={`  ${showCartIcon === false & showProductList === false ? '' : 'hidden'}  bg-amber-400 p-3 `}>
 
             <form action="#" className="flex flex-col gap-3">
 
@@ -44,6 +59,9 @@ export default function Form() {
 
 
             </form>
+
+            <button onClick={handleClick}>go to home</button>
+
 
         </div>
     )

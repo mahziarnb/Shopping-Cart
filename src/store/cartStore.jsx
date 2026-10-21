@@ -1,14 +1,38 @@
 import { create } from "zustand";
 
 const cartStore = create((set) => ({
-    showIcon : true,
+    showCartIcon : true,
+    showAdminIcon : true ,
+    showProductList : false ,
+    showForm : false ,
 
-    setShowIcon : () => {
+    setShowCartIcon : () => {
 
         set( (state) => ({
-            showIcon : !state.showIcon
+            showCartIcon : !state.showCartIcon
+        }) )
+
+    },
+
+    setShowProductList :  () => {  set((state) => ({
+            showProductList : !state.showCartIcon
+        }))},
+
+
+    setShowAdminIcon : () => {
+
+        set( (state) => ({
+            showAdminIcon : !state.showAdminIcon
+        }) )
+
+    },
+
+    setShowForm : () => {
+        set( (state) => ({
+            showForm : !state.showForm
         }) )
     }
+
 
 
 }))

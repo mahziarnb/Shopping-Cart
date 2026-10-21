@@ -138,10 +138,10 @@ export default function ProductList() {
                         </div>
                     )}
 
-                    <div className="flex w-full justify-center py-2">
+                    <div className="flex w-full justify-center py-5">
                         <button onClick={() => clearProducts()} className="rounded-xl bg-red-50 px-4 py-3 text-sm font-semibold text-red-600 transition hover:bg-red-100 active:scale-95">remove all</button>
                     </div>
-                    
+
                 </section>
 
 
