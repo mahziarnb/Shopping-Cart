@@ -8,7 +8,6 @@ export default function AdminPanel() {
     const showCartIcon = cartStore(state => state.showCartIcon)
     const setShowCartIcon = cartStore(state => state.setShowCartIcon)
     const showProductList = cartStore(state => state.showProductList)
-    const setShowProductList = cartStore(state => state.setShowProductList)
     const setShowForm = cartStore(state => state.setShowForm)
 
     function handleClick() {

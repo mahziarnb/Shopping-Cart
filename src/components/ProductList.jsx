@@ -48,12 +48,23 @@
 import { useEffect } from "react"
 import productsStore from "../store/productStore"
 import ListItem from "./ListItem"
+import cartStore from "../store/cartStore"
 
 export default function ProductList() {
     const products = productsStore((state) => state.products)
     const getProducts = productsStore((state) => state.getProducts)
     const getTotal = productsStore((state) => state.getTotal)
     const clearProducts = productsStore(state => state.clearProducts)
+
+    const setShowCartIcon = cartStore(state => state.setShowCartIcon)
+    const setShowProductList = cartStore(state => state.setShowProductList)
+
+
+
+    function handleClick() {
+        setShowCartIcon();
+        setShowProductList();
+    }
 
 
     useEffect(() => {
@@ -82,19 +93,32 @@ export default function ProductList() {
                         </p>
                     </div>
 
-                    <div className="flex w-fit items-center gap-3 rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm">
-                        <span className="text-2xl">🛒</span>
+                    <div className="flex gap-2 ">
+                        <button
+                        className="rounded-xl text-2xl bg-blue-500 px-7 py-4 font-bold text-white shadow-lg shadow-blue-500/20 transition hover:bg-blue-400 active:scale-95"
+                        onClick={handleClick}
+                        >go to home
+                        </button>
 
-                        <div>
-                            <p className="text-xs text-slate-500">
-                                Total products
-                            </p>
+                        <div className="flex w-fit items-center gap-3 rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm">
 
-                            <p className="text-xl font-bold text-slate-900">
-                                {products.length}
-                            </p>
+                            <span className="text-2xl">🛒</span>
+
+                            <div>
+                                <p className="text-xs text-slate-500">
+                                    Total products
+                                </p>
+
+                                <p className="text-xl font-bold text-slate-900">
+                                    {products.length}
+                                </p>
+                            </div>
+
                         </div>
+
                     </div>
+
+
                 </header>
 
                 {/* Products */}

@@ -6,10 +6,7 @@ export default function Cart() {
     const showForm = cartStore(state => state.showForm)
     const setShowProductList = cartStore(state => state.setShowProductList)
 
-    function handleClick() {
-        setShowCartIcon();
-        setShowProductList();
-    }
+
 
     return (
 
@@ -19,7 +16,7 @@ export default function Cart() {
 
             <ProductList/>
 
-            <button onClick={handleClick}>go to home</button>
+
 
         </div>
 
