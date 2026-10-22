@@ -18,7 +18,7 @@ export default function AdminPanel() {
 
 
     return (
-    <div className={` ${showCartIcon === true & showProductList === false & showAdminIcon === true ? '' : 'hidden'}  `}>
+    <div className={` ${showCartIcon === true && showProductList === false && showAdminIcon === true ? '' : 'hidden'}  `}>
 
         <FontAwesomeIcon onClick={handleClick} icon={faUser} className="text-[80px] cursor-pointer"  />
 

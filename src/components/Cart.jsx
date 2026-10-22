@@ -10,7 +10,7 @@ export default function Cart() {
 
         // transition-opacity duration-300 ease-in-out ${showCartIcon ? 'opacity-0' : 'opacity-100'}
 
-        <div className={`  ${showCartIcon === false & showForm === false ? '' : 'hidden'}  `}>
+        <div className={`  ${showCartIcon === false && showForm === false ? '' : 'hidden'}  `}>
 
             <ProductList/>
 
