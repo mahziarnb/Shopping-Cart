@@ -107,12 +107,12 @@ export default function ListItem({ title, price, quantity, id }) {
                     </button>
                 </div>
 
-                {/* <button
+                <button
                     onClick={() => updatePrice(id)}
                     className="rounded-xl bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-700 transition hover:bg-amber-100 active:scale-95"
                 >
                     Edit price
-                </button> */}
+                </button>
 
                 <button
                     onClick={() => removeProduct(id)}

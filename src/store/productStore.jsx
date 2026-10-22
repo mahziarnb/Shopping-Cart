@@ -85,6 +85,17 @@ import { create } from "zustand";
 
         increase: async (btnId) => {
 
+                set((state) => ({
+
+                    products : state.products.map(
+                    product => product.id === btnId ?
+                    {...product , quantity: product.quantity + 1} :
+                    product
+
+                )
+
+                }))
+
             try {
 
                 const response = await fetch(`https://shopping-cart-backend-pi.vercel.app/api/products/${btnId}` , {
@@ -105,27 +116,23 @@ import { create } from "zustand";
                     throw new Error (`increase quantity filed ! ${response.statusText}`)
                 }
 
-
-                set((state) => ({
-
-                    products : state.products.map(
-                    product => product.id === btnId ?
-                    {...product , quantity: product.quantity + 1} :
-                    product
-
-                )
-
-                }))
-
             } catch (error) {
                 console.log(error)
             }
 
-
-
         },
 
         decrease : async (btnId) => {
+
+            set((state) => ({
+
+                products : state.products.map(
+                    product =>
+                    product.id === btnId && product.quantity > 1 ?
+                    {...product , quantity: product.quantity - 1} :
+                    product
+
+            )}))
 
             try {
 
@@ -144,19 +151,10 @@ import { create } from "zustand";
                 })
 
                 if(!response.ok) {
-                    throw new Error (`decrease quantity filed ! ${response.statusText}`)
+
+                    throw new Error ('this is an error')
+
                 }
-
-
-                set((state) => ({
-                    products : state.products.map(
-                        product =>
-                        product.id === btnId && product.quantity > 1 ?
-                        {...product , quantity: product.quantity - 1} :
-                        product
-                    )
-
-            }))
 
             } catch (error) {
 
