@@ -15,7 +15,7 @@ const cartStore = create((set) => ({
     },
 
     setShowProductList :  () => {  set((state) => ({
-            showProductList : !state.showCartIcon
+            showProductList : !state.showProductList
         }))},
 
 
